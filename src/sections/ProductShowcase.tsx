@@ -1,5 +1,4 @@
-import Image from 'next/image'
-import appScreen from '@/assets/app-screen.png'
+import { ProductShowcaseImageMotion } from '@/components/ProductShowcaseImageMotion'
 
 export function ProductShowcase() {
   return (
@@ -15,7 +14,7 @@ export function ProductShowcase() {
             one task at a time.
           </p>
         </div>
-        <Image src={appScreen} alt="The product screenshot" className="mt-14" />
+        <ProductShowcaseImageMotion />
       </div>
     </div>
   )

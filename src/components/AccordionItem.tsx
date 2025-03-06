@@ -1,6 +1,6 @@
 'use client'
 
-import { cn } from '@/utils/cn'
+import { AnimatePresence, motion } from 'framer-motion'
 import { MinusIcon, PlusIcon } from 'lucide-react'
 import { useState } from 'react'
 
@@ -19,16 +19,66 @@ export function AccordionItem({ question, answer }: AccordionItemProps) {
     >
       <div className="flex items-center">
         <span className="flex-1 text-lg font-bold">{question}</span>
-        {isOpen && <MinusIcon />}
-        {!isOpen && <PlusIcon />}
+        {!isOpen && (
+          <motion.div
+            initial={{
+              opacity: 0,
+              transform: 'rotate(0)',
+            }}
+            animate={{
+              opacity: 1,
+              transform: 'rotate(180deg)',
+            }}
+            exit={{
+              opacity: 0,
+              transform: 'rotate(0deg)',
+            }}
+          >
+            <PlusIcon />
+          </motion.div>
+        )}
+        {isOpen && (
+          <motion.div
+            initial={{
+              opacity: 0,
+              transform: 'rotate(0)',
+            }}
+            animate={{
+              opacity: 1,
+              transform: 'rotate(180deg)',
+            }}
+            exit={{
+              opacity: 0,
+              transform: 'rotate(0deg)',
+            }}
+          >
+            <MinusIcon />
+          </motion.div>
+        )}
       </div>
-      <div
-        className={cn('hidden mt-4', {
-          block: isOpen,
-        })}
-      >
-        {answer}
-      </div>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{
+              opacity: 0,
+              height: 0,
+              marginTop: 0,
+            }}
+            animate={{
+              opacity: 1,
+              height: 'auto',
+              marginTop: 16,
+            }}
+            exit={{
+              opacity: 0,
+              height: 0,
+              marginTop: 0,
+            }}
+          >
+            {answer}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   )
 }

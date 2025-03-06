@@ -1,7 +1,6 @@
 import { ArrowRight } from 'lucide-react'
-import cursorImage from '@/assets/cursor.png'
-import messageImage from '@/assets/message.png'
-import Image from 'next/image'
+import { CursorImageMotion } from '@/components/CursorImageMotion'
+import { MessageImageMotion } from '@/components/MessageImageMotion'
 
 export function Hero() {
   return (
@@ -28,20 +27,8 @@ export function Hero() {
               One Task
               <b /> at a Time
             </h1>
-            <Image
-              src={cursorImage}
-              height={200}
-              width={200}
-              alt=""
-              className="absolute right-[476px] top-[108px] hidden md:inline"
-            />
-            <Image
-              src={messageImage}
-              height={200}
-              width={200}
-              alt=""
-              className="absolute left-[496px] top-[56px] hidden md:inline"
-            />
+            <CursorImageMotion />
+            <MessageImageMotion />
           </div>
         </div>
         <div className="flex justify-center">
